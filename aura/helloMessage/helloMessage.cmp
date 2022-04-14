@@ -1,0 +1,15 @@
+<aura:component >
+    <aura:attribute name="expense" type="List" default="['Hello','how are you?']"/>
+    Without iteration
+    <p> {!v.expense[0]}</p>
+    <p>{!v.expense[1]} </p>
+    With iteration
+    <aura:iteration items="{!v.expense}" var="msg">
+    <p> {!msg}</p>
+    </aura:iteration>
+    <aura:if isTrue="{!$Browser.isIPhone}">
+        <aura:set attribute="else">
+        </aura:set>
+    </aura:if>
+    
+</aura:component>

@@ -1,0 +1,63 @@
+<apex:page controller="javascriptRemoting2" >
+    
+        <style>
+body{
+        font-family: Helvetica, Arial, sans-serif;
+    }
+#records{
+	border-collapse: collapse;
+	margin-top:10px;        
+}
+#records th, #records td{
+	border: 1px solid #AA99D6;
+	padding: 3px 7px 2px 7px;
+}
+#records th {
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #AA99D6;
+	color: #ffffff;
+}
+#records tr:nth-child(odd){
+	color: #000000;
+	background-color: #AACCEA;
+}
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+ <apex:form >
+  <apex:actionfunction name="getAccountsByName" action="{!getAccountsByName}" rerender="resultArea">
+   <apex:param name="name" value="" assignTo="{!name}"/>
+  </apex:actionfunction>
+                
+ <script>
+function getdetail(){
+        getAccountsByName("GenePoint");
+}
+       
+
+
+  </script>
+        
+     
+<!--  <apex:outputPanel id="resultArea" >
+   <apex:repeat var="a" value="{!listOfAccounts}" >
+    <apex:outputLabel value="{!a.id}, {!a.name}" /> <br/>
+   </apex:repeat>
+  </apex:outputPanel>-->
+  
+  <apex:pageBlock title="My Content" id="resultArea">
+
+        <apex:pageBlockTable value="{!listOfAccounts}" var="item">
+            <apex:column value="{!item.AccountNumber}"/>
+            <apex:column value="{!item.name}"/> 
+            <apex:column value="{!item.BillingCity}"/>
+
+        </apex:pageBlockTable> 
+
+    </apex:pageBlock> 
+
+           
+           <apex:commandButton title="Apply and Continue" value="Apply and Continue" onclick="getdetail();return false;"/>     
+ </apex:form>
+</apex:page>

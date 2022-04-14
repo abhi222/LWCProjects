@@ -1,0 +1,18 @@
+<aura:component >
+    <!-- Imports -->
+    <aura:attribute name="wrapperObj" type="Object"></aura:attribute>
+    <aura:attribute name="columns" type="List" ></aura:attribute>
+
+    <aura:handler name="init" value="{!this}" action="{!c.loaddata}"></aura:handler>
+    
+    <!-- Data table goes here-->
+    <div>
+        <lightning:datatable 
+            keyField="id"
+            data="{! v.wrapperObj }"
+            columns="{! v.columns }"
+            hideCheckboxColumn="true"></lightning:datatable>
+
+    </div>
+
+</aura:component>

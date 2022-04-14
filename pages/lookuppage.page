@@ -1,0 +1,11 @@
+<apex:page controller="objectList">
+   <apex:form >
+  <apex:pageBlock mode="detail">
+<!-- this is dummy lookup field on vf page-->
+   <apex:inputField value="{!acc.ownerid}" />
+<!-- passing lookup field value i.e userdid into controller methos  on button click-->
+   <apex:commandButton action="{!searchdata}" title="search" value="search"/>
+
+   </apex:pageblock>       
+  </apex:form>                       
+</apex:page>

@@ -1,0 +1,74 @@
+<apex:page controller="javascriptRemoting2">
+    
+    <style>
+body{
+        font-family: Helvetica, Arial, sans-serif;
+    }
+#records{
+	border-collapse: collapse;
+	margin-top:10px;        
+}
+#records th, #records td{
+	border: 1px solid #AA99D6;
+	padding: 3px 7px 2px 7px;
+}
+#records th {
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #AA99D6;
+	color: #ffffff;
+}
+#records tr:nth-child(odd){
+	color: #000000;
+	background-color: #AACCEA;
+}
+</style>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+    function getDetails(){
+        
+         var acntvalue=$('#Accountname').val();
+    
+        
+  Visualforce.remoting.Manager.invokeAction(
+ '{!$RemoteAction.javascriptRemoting2.getaccountnames}',
+ acntvalue,
+ function(result, event) {
+ if (event.status) {
+ var l = result.length;
+ if (l == 0) {
+ document.getElementById("details").innerHTML = 'No Results!';
+ } else {
+ var markup = '<table id="records">';
+ markup += '<tr><th>Account No.</th><th>Account Name</th><th>City</th></tr>';
+ for (var i = 0; i< l; i++) {
+ var recordDetail = '<tr>' + "<td>" + result[i].AccountNumber + "</td>" + "<td>" + result[i].Name + "</td>" + "<td>" + 
+ result[i].BillingCity  + "</td>" + '</tr>';
+ markup += recordDetail;
+ }
+ document.getElementById("details").innerHTML = markup;
+ }
+ } else if (event.type === 'exception') {
+ document.getElementById("details").innerHTML = event.message + "<br/>\n<pre>" + event.where + "</pre>";
+ } else {
+ document.getElementById("details").innerHTML = event.message;
+ }
+ }, 
+ {
+ escape: true
+ });
+    }
+    
+    </script>
+<div>
+    <input type="text" id="Accountname" label="Account name"/>
+    <input type="Button" value="Search" onclick="getDetails();"/>
+</div>
+<div id="details">
+    
+    
+</div>
+</apex:page>

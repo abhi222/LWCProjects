@@ -1,0 +1,35 @@
+<apex:page standardController="Account" recordSetVar="accounts" tabstyle="account" sidebar="false"  docType="html-5.0" >
+  <apex:pageBlock >
+    <apex:form >
+  
+      <apex:pageBlockTable value="{!accounts}" var="a" id="list">
+        <apex:column value="{!a.name}"/>
+      </apex:pageBlockTable>
+      
+          
+
+        
+
+    
+    
+         <table id="table"  cellSpacing="0"   class="display compact ">
+                            <thead>
+                                <tr>                                
+                                    <th >&nbsp;&nbsp; </th>
+                                    
+                                </tr>
+                            </thead>                           
+                            <tbody> 
+                             <apex:repeat value="{!accounts}" var="a" id="theRepeat">
+                                    <tr>  
+                                          <td><apex:inputText list="" value="{!a.name}" id="theValue"/><br/></td>
+                                        
+                                       
+                                        
+                                    </tr> 
+                                </apex:repeat>
+                            </tbody>   
+                        </table>  
+    </apex:form>
+  </apex:pageBlock>
+</apex:page>
